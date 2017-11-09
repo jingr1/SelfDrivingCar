@@ -44,4 +44,4 @@ for k in range(len(measurements)):
     p = sense(p, measurements[k])
     p = move(p, motions[k])
 
-print p
+print(p)
