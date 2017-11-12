@@ -35,7 +35,7 @@ vector< vector<float> > normalize(vector< vector <float> > grid) {
 	
 	vector< vector<float> > newGrid;
 	float total = 0.0;
-	vector< vector<float> > grid_row;
+	vector<float> grid_row;
 	for (int row = 0; row < grid.size(); ++row)
 	{
 		for (int column = 0; column < grid[0].size(); ++column)
@@ -91,9 +91,36 @@ vector< vector<float> > normalize(vector< vector <float> > grid) {
 */
 vector < vector <float> > blur(vector < vector < float> > grid, float blurring) {
 
-	vector < vector <float> > newGrid;
-	
-	// your code here
+	int height = grid.size();
+	int width  = grid[0].size();
+	vector < vector <float> > newGrid(height, vector<float>(width,0.0));
+	float center_prob = 1.0-blurring;
+	float corner_prob = blurring / 12.0;
+	float adjacent_prob = blurring / 6.0;
+	float grid_val,mult;
+	int new_i,new_j;
+
+    vector < vector<float> > window = {{corner_prob,  adjacent_prob,  corner_prob},
+									   {adjacent_prob,center_prob,  adjacent_prob},
+									   {corner_prob,  adjacent_prob,  corner_prob}};
+
+	for (int i = 0; i < height; ++i)
+	{
+		for (int j = 0; j < width; ++j)
+		{
+			grid_val = grid[i][j];
+			for (int dx = -1; dx < 2; ++dx)
+			{
+				for (int dy = -1; dy < 2; ++dy)
+				{
+					mult = window[dx+1][dy+1];
+                    new_i = (i + dx + height) % height;
+                    new_j = (j + dy + width) % width;
+                    newGrid[new_i][new_j] += mult * grid_val;
+				}
+			}
+		}
+	}
 
 	return normalize(newGrid);
 }
