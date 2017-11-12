@@ -30,12 +30,8 @@ def sense(color, grid, beliefs, p_hit, p_miss):
         for j, cell in enumerate(row):
             hit = (grid[i][j]==color)
             new_beliefs[i][j] = beliefs[i][j] * (hit * p_hit + (1-hit) * p_miss)
-    sums = 0
-    for row in new_beliefs:
-        sums = sums + sum(row)
-    for i, row in enumerate(new_beliefs):
-        for j, cell in enumerate(row):
-            new_beliefs[i][j] = new_beliefs[i][j]/sums
+    new_beliefs = normalize(new_beliefs)
+
 
     return new_beliefs
 

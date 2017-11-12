@@ -8,7 +8,7 @@
 def normalize(grid):
     """
     Given a grid of unnormalized probabilities, computes the
-    correspond normalized version of that grid.
+    correspond normalized version of that grid. 
     """
     total = 0.0
     for row in grid:
@@ -24,8 +24,8 @@ def blur(grid, blurring):
     """
     Spreads probability out on a grid using a 3x3 blurring window.
     The blurring parameter controls how much of a belief spills out
-    into adjacent cells. If blurring is 0 this function will have
-    no effect.
+    into adjacent cells. If blurring is 0 this function will have 
+    no effect. 
     """
     height = len(grid)
     width  = len(grid[0])
@@ -54,11 +54,11 @@ def blur(grid, blurring):
 def is_robot_localized(beliefs, true_pos):
     """
     Returns None if the robot has no "strong opininon" about
-    its belief. The robot has a strong opinion when the
-    size of it's best belief is greater than twice the size of
+    its belief. The robot has a strong opinion when the 
+    size of it's best belief is greater than twice the size of 
     its second best belief.
 
-    If it DOES have a strong opinion then this function returns
+    If it DOES have a strong opinion then this function returns 
     True if that opinion is correct and False if it is not.
     """
     best_belief = 0.0
