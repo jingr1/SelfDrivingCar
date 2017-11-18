@@ -44,7 +44,7 @@ int main() {
 	// test blur
 	start = std::clock();
 	for (int i = 0; i < iterations; i++) {
-		beliefs = blur(beliefs, .12);
+		beliefs = blur(beliefs);
 	}
 	duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
 	std::cout << "duration milliseconds blur " << 1000 * duration << '\n';

@@ -3,7 +3,7 @@
 using namespace std;
 
 // OPTIMIZATION: Pass large variable by reference
-vector < vector <float> > blur(vector < vector < float> > &grid, float blurring) {
+vector < vector <float> > blur(vector < vector < float> > &grid) {
 
 	// initialize variables
 	// OPTIMIZATION: window, DX and  DY variables have the 
@@ -18,23 +18,23 @@ vector < vector <float> > blur(vector < vector < float> > &grid, float blurring)
     // and push back
 
 	// calculate blur factors
-	static float center = 1.0 - blurring;
-	static float corner = blurring / 12.0;
-	static float adjacent = blurring / 6.0;
-  	static vector < vector <float> > window = {
+	static const float blurring = 0.12;
+	static const float center = 1.0 - blurring;
+	static const float corner = blurring / 12.0;
+	static const float adjacent = blurring / 6.0;
+  	static const vector < vector <float> > window = {
   		{corner, adjacent, corner},
   		{adjacent, center, adjacent},
   		{corner, adjacent, corner }};
 
-	static int height = grid.size();
-	static int width = grid[0].size();
+  		// variables for blur calculations
+	static const vector <int> DX = {-1, 0, 1};
+	static const vector <int> DY = {-1, 0, 1};
+
+	int height = grid.size();
+	int width = grid[0].size();
 
 	int i, j;
-
-	// variables for blur calculations
-	static vector <int> DX = {-1, 0, 1};
-	static vector <int> DY = {-1, 0, 1};
-
 	int ii;
 	int jj;
 	int new_i;

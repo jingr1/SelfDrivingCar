@@ -28,3 +28,15 @@ move.cpp
 - pass beliefs variable by reference
 - use improved zeros function for newGrid
 - avoid declaring and defining intermediate variables like the belief variable. See if the code runs faster.
+
+
+You might have optimized using different techniques than the ones used here. The techniques used include:
+- reserving memory for vectors
+- passing larger variables to functions by reference
+- removing variables that were not needed
+- modifying vectors in place when possible instead of creating new vector variables
+- iterating with ++i instead of i++
+- removing dead code (lines of code that were in the files but no longer being used)
+- avoiding extra for loops especially nested for loops when possible
+- avoiding extra if statements
+- using static and const keywords when appropriate
